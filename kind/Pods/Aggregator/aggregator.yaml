@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aggregator-aggs
+  labels:
+    role: woker
+    aggs: agg
+spec:
+  containers:
+    - name: aggregator
+      image: uchina/asit
+      ports:
+        - name: aggs
+          containerPort: 1234
+          protocol: TCP
+      tty: true
+      command:
+        - sh
+        - -c
+        - "cd /my_mcl && git pull \
+          && make ./bin/aggregator.exe \
+          && ./bin/aggregator.exe 10.244.1.41
+          && sleep 6000"
+      #args: ["10.100.94.214","3000","3000"] # 10.100.104.221
+  restartPolicy: Always
+  nodeSelector:
+    aggs: agr-a
