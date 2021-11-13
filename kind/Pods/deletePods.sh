@@ -1,3 +1,4 @@
 #!/bin/bash
 
-kubectl delete pods signer-aggs verifier-aggs aggregator-aggs
+kubectl delete pods verifier-aggs aggregator-aggs
+kubectl delete -f Signer/signer-replica.yaml 

@@ -8,7 +8,8 @@ metadata:
 spec:
   containers:
     - name: aggregator
-      image: uchina/asit
+      image: asit
+      imagePullPolicy: IfNotPresent
       ports:
         - name: aggs
           containerPort: 1234
@@ -18,10 +19,9 @@ spec:
         - sh
         - -c
         - "cd /my_mcl && git pull \
-          && make ./bin/aggregator.exe \
-          && ./bin/aggregator.exe 10.244.1.41
+          && make ./bin/aggregator2.exe \
           && sleep 6000"
       #args: ["10.100.94.214","3000","3000"] # 10.100.104.221
   restartPolicy: Always
   nodeSelector:
-    aggs: agr-a
+    aggs: agr

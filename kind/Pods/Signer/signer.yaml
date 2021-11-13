@@ -8,7 +8,12 @@ metadata:
 spec:
   containers:
     - name: signer
-      image: uchina/asit
+      image: asit
+      imagePullPolicy: IfNotPresent
+      lifecycle:
+        preStop:
+          exec:
+            command: ["/bin/sh", "-c", "sleep 6000"]
       ports:
         - name: aggs
           containerPort: 1234
@@ -18,9 +23,8 @@ spec:
         - sh
         - -c
         - "cd /my_mcl && git pull \
-          && make ./bin/client.exe \
-          && ./bin/client.exe 10.244.4.15 \
-          && sleep 6000"
+          && make ./bin/client2.exe \
+          && ./bin/client2.exe 10.244.4.15"
       #args: ["192.168.35.168","3000"]
   restartPolicy: OnFailure
   nodeSelector:
