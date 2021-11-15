@@ -20,7 +20,7 @@ spec:
         - -c
         - "cd /my_mcl && git pull \
           && make ./bin/aggregator2.exe \
-          && sleep 6000"
+          && sleep 9000"
       #args: ["10.100.94.214","3000","3000"] # 10.100.104.221
   restartPolicy: Always
   nodeSelector:

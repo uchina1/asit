@@ -32,3 +32,10 @@ nodes:
     nodeRegistration:
       kubeletExtraArgs:
         node-labels: "aggs=sir2"
+- role: worker   
+  kubeadmConfigPatches:
+  - |
+    kind: JoinConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "aggs=sir3"
