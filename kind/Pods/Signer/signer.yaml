@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: signer-aggs
+  labels:
+    role: woker
+    aggs: sir
+spec:
+  containers:
+    - name: signer
+      image: asit
+      imagePullPolicy: IfNotPresent
+      lifecycle:
+        preStop:
+          exec:
+            command: ["/bin/sh", "-c", "sleep 6000"]
+      ports:
+        - name: aggs
+          containerPort: 1234
+          protocol: TCP
+      tty: true
+      command:
+        - sh
+        - -c
+        - "cd /my_mcl && git pull \
+          && make ./bin/client2.exe \
+          && ./bin/client2.exe 10.244.4.15"
+      #args: ["192.168.35.168","3000"]
+  restartPolicy: OnFailure
+  nodeSelector:
+    aggs: sir1

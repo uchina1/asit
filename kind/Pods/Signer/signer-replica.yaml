@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: signer-dep-aggs
+  #labels:
+  #  role: woker
+  #  aggs: sir
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      aggs: sir-deploy
+  template:
+    metadata:
+      labels:
+        aggs: sir-deploy
+    spec:
+      containers:
+        - name: signer
+          image: asit
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: aggs
+              containerPort: 1234
+              protocol: TCP
+          tty: true
+          command:
+            - sh
+            - -c
+            - "cd /my_mcl && git pull \
+              && make ./bin/client2.exe \
+              && ./bin/client2.exe 10.244.1.12"
+          #args: ["192.168.35.168","3000"]
