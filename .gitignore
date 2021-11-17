@@ -32,3 +32,4 @@
 *.app
 
 Dockerfile
+aws/pods/Signer/Deployments/*.yaml

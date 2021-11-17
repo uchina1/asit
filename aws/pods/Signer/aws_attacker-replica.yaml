@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attacker-dep-aggs
+  #labels:
+  #  role: woker
+  #  aggs: sir
+spec:
+  replicas: attacker-replica-num
+  selector:
+    matchLabels:
+      aggs: atr-deploy
+  template:
+    metadata:
+      labels:
+        aggs: atr-deploy
+    spec:
+      containers:
+        - name: signer
+          image: public.ecr.aws/g4u3m4s4/asit:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: aggs
+              containerPort: 1234
+              protocol: TCP
+          tty: true
+          command:
+            - sh
+            - -c
+            - "cd /my_mcl && git pull \
+              && make ./bin/attacker2.exe \
+              && ./bin/attacker2.exe ip-address"
+          #args: ["192.168.35.168","3000"]
+      nodeSelector:
+        role: signer
