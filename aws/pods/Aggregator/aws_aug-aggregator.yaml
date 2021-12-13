@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: aggregator-aggs
+  name: aug-aggregator-aggs
   labels:
     role: woker
     aggs: agg
@@ -19,7 +19,7 @@ spec:
         - sh
         - -c
         - "cd /my_mcl && git pull \
-          && make ./bin/aggregator2.exe \
+          && make ./bin/aug_aggregator2.exe \
           && sleep 9000000"
       #args: ["10.100.94.214","3000","3000"] # 10.100.104.221
   restartPolicy: Never

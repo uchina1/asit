@@ -6,13 +6,24 @@ metadata:
   region: us-west-2
 
 nodeGroups:
-  - name: Control-Plane
-    labels: {role: control-plane}
-    instanceType: t3.micro
-    desiredCapacity: 1
+#  - name: Control-Plane
+#    labels: {role: control-plane}
+#    instanceType: t3.micro
+#    desiredCapacity: 1
 #    ssh:
 #      allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
 #      publicKeyName: 'mykeypair'
+#    privateNetworking: false
+  - name: Signer
+    labels: {role: signer}
+    instanceType: t3.micro
+    minSize: 1
+    desiredCapacity: 2
+    volumeSize: 5
+    volumeType: gp2
+    ssh:
+      publicKeyName: 'mykeypair'
+#    maxPodsPerNode: 3
     privateNetworking: false
   - name: Verifier
     labels: {role: verifier}
@@ -24,7 +35,6 @@ nodeGroups:
       publicKeyName: 'mykeypair'
     # maxPodsPerNode: 3
     privateNetworking: false
-
   - name: Aggregator
     labels: {role: aggregator}
     instanceType: t3.micro
@@ -34,16 +44,4 @@ nodeGroups:
     ssh:
       publicKeyName: 'mykeypair'
     # maxPodsPerNode: 3
-    privateNetworking: false
-
-  - name: Signer
-    labels: {role: signer}
-    instanceType: t3.micro
-    minSize: 1
-    desiredCapacity: 1
-    volumeSize: 5
-    volumeType: gp2
-    ssh:
-      publicKeyName: 'mykeypair'
-    maxPodsPerNode: 3
     privateNetworking: false

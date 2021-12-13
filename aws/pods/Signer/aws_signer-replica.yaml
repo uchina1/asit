@@ -6,7 +6,7 @@ metadata:
   #  role: woker
   #  aggs: sir
 spec:
-  replicas: signer-replica-num
+  replicas: 1
   selector:
     matchLabels:
       aggs: sir-deploy
@@ -29,7 +29,7 @@ spec:
             - -c
             - "cd /my_mcl && git pull \
               && make ./bin/client2.exe \
-              && ./bin/client2.exe ip-address"
+              && ./bin/client2.exe signer-replica-num ip-address"
           #args: ["192.168.35.168","3000"]
       nodeSelector:
         role: signer

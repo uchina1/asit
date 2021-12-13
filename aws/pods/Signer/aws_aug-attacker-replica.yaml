@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: attacker-dep-aggs
+  name: aug-attacker-dep-aggs
   #labels:
   #  role: woker
   #  aggs: sir
