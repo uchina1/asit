@@ -19,7 +19,7 @@ spec:
         - sh
         - -c
         - "cd /my_mcl && git pull \
-          && make ./bin/sw-1_aggregator2.exe \
+          && make ./bin/sw-1_aggregator.exe \
           && sleep 9000000"
       #args: ["10.100.94.214","3000","3000"] # 10.100.104.221
   restartPolicy: Never
